@@ -6,6 +6,7 @@ public class MyBinarySearchTree<E extends Comparable<E>> implements BinarySearch
 
     // Root of binary search tree..
     Node<E> root = null;
+//    int height = 0;
 
     // getter for root..
     public Node<E> getRoot() {
@@ -18,10 +19,14 @@ public class MyBinarySearchTree<E extends Comparable<E>> implements BinarySearch
         Node<E> node = new Node<>(data);
         if (root == null) {
             root = node;
+//            height = 1;
         } else {
             Node<E> temp = root;
+//            int currentHeight = 0;
             Node<E> parent = null;
+
             while (temp != null) {
+//                currentHeight++;
                 parent = temp;
                 if (data.compareTo(temp.getData()) > 0) {
                     temp = temp.getRight();
@@ -29,6 +34,7 @@ public class MyBinarySearchTree<E extends Comparable<E>> implements BinarySearch
                     temp = temp.getLeft();
                 }
             }
+//            height = Math.max(height, currentHeight);
             if (data.compareTo(parent.getData()) <= 0) {
                 parent.setLeft(node);
             } else {
