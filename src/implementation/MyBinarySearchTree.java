@@ -12,9 +12,29 @@ public class MyBinarySearchTree<E extends Comparable<E>> implements BinarySearch
         return root;
     }
 
+    // insert new node to the binary search tree..
     @Override
     public void insert(E data) {
-
+        Node<E> node = new Node<>(data);
+        if (root == null) {
+            root = node;
+        } else {
+            Node<E> temp = root;
+            Node<E> parent = null;
+            while (temp != null) {
+                parent = temp;
+                if (data.compareTo(temp.getData()) > 0) {
+                    temp = temp.getRight();
+                } else {
+                    temp = temp.getLeft();
+                }
+            }
+            if (data.compareTo(parent.getData()) <= 0) {
+                parent.setLeft(node);
+            } else {
+                parent.setRight(node);
+            }
+        }
     }
 
     @Override
