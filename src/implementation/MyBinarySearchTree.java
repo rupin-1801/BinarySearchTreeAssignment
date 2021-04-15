@@ -1,7 +1,6 @@
 package implementation;
 
 import myinterface.BinarySearchTreeADT;
-import myinterface.Node;
 
 public class MyBinarySearchTree<E extends Comparable<E>> implements BinarySearchTreeADT<E> {
 
