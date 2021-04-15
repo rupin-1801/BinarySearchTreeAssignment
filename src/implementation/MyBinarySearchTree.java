@@ -4,7 +4,14 @@ import myinterface.BinarySearchTreeADT;
 import myinterface.Node;
 
 public class MyBinarySearchTree<E extends Comparable<E>> implements BinarySearchTreeADT<E> {
-    //complete this class
+
+    // Root of binary search tree..
+    Node<E> root = null;
+
+    // getter for root..
+    public Node<E> getRoot() {
+        return root;
+    }
 
     @Override
     public void insert(E data) {
