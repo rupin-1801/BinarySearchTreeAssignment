@@ -93,7 +93,88 @@ public class MyBinarySearchTree<E extends Comparable<E>> implements BinarySearch
 
     @Override
     public void delete(E data) {
+        Node<E> temp = root;
+        Node<E> requiredNode = null;
+        Node<E> parentNode = null;
 
+        // traversing or searching through the required node to be deleted..
+        if (root != null) {
+            while (temp != null && requiredNode == null) {
+                if (data == temp.getData()) {
+                    requiredNode = temp;
+                } else {
+                    parentNode = temp;
+                    if (data.compareTo(temp.getData()) < 0) {
+                        temp = temp.getLeft();
+                    } else {
+                        temp = temp.getRight();
+                    }
+                }
+            }
+        }
+
+        // now performing deletion operation..
+        if (requiredNode != null) {
+
+            // Leaf node case..
+            if (requiredNode.getLeft() == null && requiredNode.getRight() == null) {
+
+                // if tree only contains that required node (root case)..
+                if (parentNode == null) root = null;
+                else {
+                    if (data.compareTo(parentNode.getData()) <= 0) {
+                        parentNode.setLeft(null);
+                    } else {
+                        parentNode.setRight(null);
+                    }
+                }
+            } else if (requiredNode.getLeft() == null || requiredNode.getRight() == null) {
+
+                // Current node has only single child node (single child case)..
+
+                // storing that single child node reference for later use..
+                requiredNode = (requiredNode.getRight() != null) ? requiredNode.getRight() : requiredNode.getLeft();
+
+                // root case..
+                if (parentNode == null) root = requiredNode;
+                else {
+                    if (data.compareTo(parentNode.getData()) <= 0) {
+                        parentNode.setLeft(requiredNode);
+                    } else {
+                        parentNode.setRight(requiredNode);
+                    }
+                }
+            }
+
+            // Current node has both child nodes..
+            else {
+
+                // finding successor for the current node..
+                Node<E> successor = getSuccessor(requiredNode);
+                delete(successor.getData());
+                successor.setLeft(temp.getLeft());
+                successor.setRight(temp.getRight());
+                if (parentNode == null) {
+                    root = successor;
+                } else {
+                    if (data.compareTo(parentNode.getData()) < 0) {
+                        parentNode.setLeft(successor);
+                    } else {
+                        parentNode.setRight(successor);
+                    }
+                }
+            }
+        } else {
+            System.out.println("cannot delete");
+        }
+    }
+
+    private Node<E> getSuccessor(Node<E> requiredNode) {
+        Node<E> temp = requiredNode.getRight();
+        while (temp.getLeft() != null) {
+            temp = temp.getLeft();
+        }
+        return temp;
     }
 
     @Override
