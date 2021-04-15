@@ -34,6 +34,8 @@ public class MyMain {
         System.out.println();
         myBinarySearchTree.postOrder(myBinarySearchTree.getRoot());
         System.out.println();
+        myBinarySearchTree.reverseInOrder(myBinarySearchTree.getRoot());
+        System.out.println();
 
         // deleting nodes..
         // root node..
