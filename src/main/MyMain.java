@@ -47,7 +47,11 @@ public class MyMain {
         // node having left child only..
         myBinarySearchTree.delete(14);
         // node having both left and right child..
-        myBinarySearchTree.delete(2);
+        myBinarySearchTree.delete(4);
         myBinarySearchTree.inOrder(myBinarySearchTree.getRoot());
+
+        // printing height of a node...
+        System.out.println();
+        System.out.println(myBinarySearchTree.height(myBinarySearchTree.getRoot()));
     }
 }

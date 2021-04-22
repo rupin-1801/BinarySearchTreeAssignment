@@ -2,6 +2,8 @@ package implementation;
 
 import myinterface.BinarySearchTreeADT;
 
+import java.lang.Math.*;
+
 public class MyBinarySearchTree<E extends Comparable<E>> implements BinarySearchTreeADT<E> {
 
     // Root of binary search tree..
@@ -185,6 +187,9 @@ public class MyBinarySearchTree<E extends Comparable<E>> implements BinarySearch
 
     @Override
     public int height(Node<E> node) {
-        return 0;
+        if (node == null) return -1;
+        else {
+            return 1 + Math.max(height(node.getLeft()), height(node.getRight()));
+        }
     }
 }
